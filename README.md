@@ -1,75 +1,54 @@
-# Premium Car Vix — Site
+# Premium Car Vix — Deploy no GitHub Pages
 
-Site estático em HTML/CSS/JS puro. Sem dependências, sem build step.
+## Passo a passo (5 minutos)
 
-## Estrutura
+### 1. Crie um repositório no GitHub
+- Acesse github.com → botão "New repository"
+- Nome sugerido: `premium-car-vix`
+- Deixe **Public**
+- Clique em "Create repository"
 
+### 2. Suba os arquivos
+No terminal, dentro da pasta do projeto:
+```bash
+git init
+git add .
+git commit -m "primeiro commit"
+git branch -M main
+git remote add origin https://github.com/SEU_USUARIO/premium-car-vix.git
+git push -u origin main
+```
+
+Ou arraste os arquivos direto pela interface do GitHub (Upload files).
+
+### 3. Ative o GitHub Pages
+- No repositório: **Settings → Pages**
+- Source: **Deploy from a branch**
+- Branch: **main** / **(root)**
+- Clique em **Save**
+
+### 4. Aguarde ~1 minuto
+O link vai aparecer no topo da página Settings → Pages:
+```
+https://SEU_USUARIO.github.io/premium-car-vix/
+```
+
+## Domínio personalizado (opcional)
+Se quiser `www.premiumcarvix.com.br` apontando pro site:
+1. Compre o domínio (registrobr.org.br)
+2. Em Settings → Pages → Custom domain: coloque o domínio
+3. No painel do domínio, crie um CNAME apontando para `SEU_USUARIO.github.io`
+
+## Estrutura de arquivos
 ```
 premium-car-vix/
 ├── index.html
-├── css/
-│   └── style.css
-├── js/
-│   └── main.js
-├── assets/           ← coloque as imagens aqui
-└── README.md
+├── css/style.css
+├── js/main.js
+└── assets/
+    ├── logo-transparente.png
+    ├── video-bg.mp4
+    ├── feedback.png
+    ├── galeria-1.png
+    └── galeria-2.png
 ```
-
-## Como usar
-
-1. Abra `index.html` direto no browser — funciona sem servidor.
-2. Para deploy: suba os arquivos em qualquer host estático (GitHub Pages, Vercel, Netlify, Hostgator etc).
-
-## Personalizar
-
-### Número do WhatsApp
-Busque `wa.me/5527999999999` no `index.html` e substitua pelo número real (com DDI, sem espaços ou traços).
-
-### Endereço / e-mail
-No `index.html`, seção `<footer>`, substitua `contato@premiumcarvix.com.br` pelo contato real.
-
-### Fotos da galeria
-Cada item `.gi` na seção `#galeria` tem um SVG placeholder.
-Para substituir por foto real:
-
-```html
-<!-- Antes (placeholder SVG) -->
-<div class="gi-fill" aria-hidden="true">
-  <svg>...</svg>
-</div>
-
-<!-- Depois (foto real) -->
-<img src="assets/nome-da-foto.jpg" alt="Descrição do trabalho" loading="lazy">
-```
-
-No `css/style.css`, descomente o bloco comentado sobre `.gi img`:
-```css
-.gi img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-.gi:hover img { transform: scale(1.04); }
-```
-
-### Números dos stats (hero)
-No `index.html`, localize os elementos `data-target`:
-```html
-<div class="meta-num" data-target="500" data-suffix="+">0+</div>
-```
-Troque o valor de `data-target` e `data-suffix` conforme os números reais do negócio.
-
-### Cores
-No `css/style.css`, seção `:root`, todas as variáveis estão centralizadas:
-```css
---gold:       #B8963E;  /* dourado principal */
---gold-light: #D4AC5A;  /* dourado hover */
---silver:     #D8D8D8;  /* texto principal */
-```
-
-## Fontes
-Carregadas via Google Fonts (requer internet).
-Para uso offline, baixe Oswald e DM Sans em fontes.google.com e ajuste os `@font-face` no CSS.
-
-## Acessibilidade
-- Marcação semântica (nav, section, article, footer, h1-h3)
-- `aria-label` nas seções
-- `aria-hidden` em elementos decorativos
-- `focus-visible` com outline dourado
-- `prefers-reduced-motion` respeitado via JS

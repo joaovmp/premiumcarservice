@@ -43,15 +43,14 @@ window.addEventListener('scroll', () => {
 
 /* ── WA float: colapsa no scroll, expande no topo ── */
 const waFloat = document.querySelector('.wa-float');
-if (waFloat) {
+const mapsFloat = document.querySelector('.maps-float');
+if (waFloat || mapsFloat) {
   let lastY = 0;
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
-    if (y > 300 && y > lastY) {
-      waFloat.classList.add('collapsed');
-    } else {
-      waFloat.classList.remove('collapsed');
-    }
+    const collapse = y > 300 && y > lastY;
+    if (waFloat)   waFloat.classList.toggle('collapsed', collapse);
+    if (mapsFloat) mapsFloat.classList.toggle('collapsed', collapse);
     lastY = y;
   }, { passive: true });
 }
